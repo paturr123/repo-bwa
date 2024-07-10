@@ -11,6 +11,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -19,6 +21,15 @@ class User extends Authenticatable
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    use SoftDeletes;
+
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'demail_verified_at'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -63,5 +74,28 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //one to one
+
+    public function detail_user()
+    {
+        return $this->hasOne('App\Models\Detail_user','users_id');
+    }
+
+    //one to many
+    public function service()
+    {
+        return $this->hasMany('App\Models\Service','users_id');
+    }
+
+    public function order_buyer()
+    {
+        return $this->hasMany('App\Models\order','buyer_id');
+    }
+
+    public function order_freelancer()
+    {
+        return $this->hasMany('App\Models\order','freelancer_id');
     }
 }

@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_user', function (Blueprint $table) {
-            $table->id();            
-            $table->foreignId('users_id')->nullable()->index('fk_detail_user_to_users');
-            $table->longText('photo')->nullable();
-            $table->string('role')->nullable();
-            $table->string('contact_number')->nullable();
-            $table->longText('biography')->nullable();            
+            $table->id();
+            $table->foreignId('users_id')->NULLABLE()->index('fk_detail_user_to_users');
+            $table->longText('photo')->NULLABLE();
+            $table->string('role')->NULLABLE();
+            $table->string('contact_number')->NULLABLE();
+            $table->longText('biography')->NULLABLE();
             $table->softDeletes();
             $table->timestamps();
         });

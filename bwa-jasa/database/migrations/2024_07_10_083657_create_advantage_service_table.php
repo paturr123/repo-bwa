@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('experience_user', function (Blueprint $table) {
+        Schema::create('advantage_service', function (Blueprint $table) {
             $table->id();
-            //$table->integer('detail_user_id')->nullable();
-            $table->foreignId('detail_user_id')->nullable()->index('fk_experience_user_to_detail_user');
-            $table->string('experience')->nullable();           
+            $table->foreignId('service_id')->nullable()->index('fk_advantage_service_to_service');
+            $table->string('advantage');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('experience_user');
+        Schema::dropIfExists('advantage_service');
     }
 };

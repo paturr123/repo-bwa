@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('buyer_id')->nullable()->index('fk_order_buyer_to_users');
+            $table->foreignId('buyer_id')->nullable()->index('fk_order_buyer_to_service');
             $table->foreignId('freelancer_id')->nullable()->index('fk_order_freelancer_to_service');
             $table->foreignId('service_id')->nullable()->index('fk_order_to_service');            
             $table->longText('file')->nullable();
